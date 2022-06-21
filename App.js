@@ -4,7 +4,6 @@ import Router from './src/router'
 import { NavigationContainer } from "@react-navigation/native";
 
 const App = () => {
-
   return (
     <NavigationContainer>
       <Router />
@@ -12,7 +11,5 @@ const App = () => {
   )
 }
 
-
 export default App
-
 const styles = StyleSheet.create({})

@@ -1,0 +1,115 @@
+[33mcommit cc350dc18ab995f7a88da90e966892e5672adb1b[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/StackNavigator[m[33m, [m[1;31morigin/feature/StackNavigator[m[33m, [m[1;31morigin/development[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mdevelopment[m[33m)[m
+Merge: 7000d17 0e8006a
+Author: Herlan Nurachman <58686408+Herlan21@users.noreply.github.com>
+Date:   Thu Jun 16 11:26:19 2022 +0700
+
+    Merge pull request #10 from Herlan21/feature/CodePush
+    
+    add OTA
+
+[33mcommit 0e8006a2a964a369b37f48883c5b9db5467eb6ea[m[33m ([m[1;31morigin/feature/CodePush[m[33m)[m
+Author: Herlan <herlan.n9d@gmail.com>
+Date:   Thu Jun 16 07:45:17 2022 +0700
+
+    add OTA
+
+[33mcommit 7000d176b23ccc972280af8a8925577b5927337c[m
+Merge: 09f42b9 2487ed8
+Author: Herlan Nurachman <58686408+Herlan21@users.noreply.github.com>
+Date:   Thu Jun 16 07:28:52 2022 +0700
+
+    Add CodePush
+
+[33mcommit 2487ed81b701fcaed9137570724bfc80a40ba974[m
+Merge: 09d2ef1 09f42b9
+Author: Herlan Nurachman <58686408+Herlan21@users.noreply.github.com>
+Date:   Thu Jun 16 07:28:25 2022 +0700
+
+    Add CodePush
+
+[33mcommit 09f42b9ecc509ab82665aa19a95ae062560fc08b[m
+Merge: fb055f9 09d2ef1
+Author: Herlan Nurachman <58686408+Herlan21@users.noreply.github.com>
+Date:   Thu Jun 16 06:58:55 2022 +0700
+
+    Merge pull request #7 from Herlan21/feature/Husky
+    
+    Add and test Husky
+
+[33mcommit 09d2ef109e04f2b2b243d9c4df3f55b2d5d2b506[m[33m ([m[1;31morigin/feature/Husky-eslint[m[33m)[m
+Author: Herlan <herlan.n9d@gmail.com>
+Date:   Thu Jun 16 06:54:30 2022 +0700
+
+    Add and test Husky
+
+[33mcommit fb055f9e57f96ad2ba9c6a6f17487ca25c3009d5[m
+Merge: 5738a59 c01e895
+Author: Herlan Nurachman <58686408+Herlan21@users.noreply.github.com>
+Date:   Thu Jun 16 06:46:48 2022 +0700
+
+    Merge pull request #6 from Herlan21/master
+    
+    Merge pull request #5 from Herlan21/development
+
+[33mcommit c01e895d2b0fb1b95f179ad83d953eb2d4a32e98[m[33m ([m[1;31morigin/master[m[33m)[m
+Merge: 36a1a7b 5738a59
+Author: Herlan Nurachman <58686408+Herlan21@users.noreply.github.com>
+Date:   Thu Jun 16 06:44:31 2022 +0700
+
+    Merge pull request #5 from Herlan21/development
+    
+    Add eslint
+
+[33mcommit 5738a59466589ab501386467c2f55c2fae8a761e[m
+Merge: 2bc217c 66bd47a
+Author: Herlan Nurachman <58686408+Herlan21@users.noreply.github.com>
+Date:   Thu Jun 16 06:43:10 2022 +0700
+
+    Merge pull request #4 from Herlan21/feature/husky-eslint
+    
+    add eslint
+
+[33mcommit 66bd47a33a71a9cd431617a521e05672a2989059[m
+Author: Herlan <herlan.n9d@gmail.com>
+Date:   Thu Jun 16 06:30:54 2022 +0700
+
+    add eslint
+
+[33mcommit 2bc217c2ba5b4abe8b6491642427d83e5974eaa5[m
+Merge: 0b98d9a 36a1a7b
+Author: Herlan Nurachman <58686408+Herlan21@users.noreply.github.com>
+Date:   Wed Jun 15 22:22:08 2022 +0700
+
+    Merge pull request #3 from Herlan21/master
+    
+    Merge pull request #2 from Herlan21/development
+
+[33mcommit 36a1a7bef4c7fac410acf1ea6c73839f5f5a44f3[m
+Merge: 2d39323 0b98d9a
+Author: Herlan Nurachman <58686408+Herlan21@users.noreply.github.com>
+Date:   Wed Jun 15 22:21:18 2022 +0700
+
+    Merge pull request #2 from Herlan21/development
+    
+    Add SonarCloud code quality check
+
+[33mcommit 0b98d9ad308ddf236154f195de29e126a717ddc9[m
+Merge: 2d39323 9ee2805
+Author: Herlan Nurachman <58686408+Herlan21@users.noreply.github.com>
+Date:   Wed Jun 15 21:50:22 2022 +0700
+
+    Merge pull request #1 from Herlan21/feature/SonarCloud
+    
+    Add SonarCloud code quality check
+
+[33mcommit 9ee2805e0785d87f87ccf62e691cc3ff9d356647[m[33m ([m[1;31morigin/feature/SonarCloud[m[33m)[m
+Author: Herlan <herlan.n9d@gmail.com>
+Date:   Wed Jun 15 21:48:37 2022 +0700
+
+    Add SonarCloud code quality check
+
+[33mcommit 2d393231f4f753abcb4a20e002eab73645dcfae2[m
+Author: Herlan <herlan.n9d@gmail.com>
+Date:   Tue Jun 14 20:04:37 2022 +0700
+
+    add file project
