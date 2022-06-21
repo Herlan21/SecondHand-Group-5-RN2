@@ -1,19 +1,18 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import CodePush from 'react-native-code-push'
+import Router from './src/router'
+import { NavigationContainer } from "@react-navigation/native";
 
 const App = () => {
-  
-  const codePushOptions = {checkFrequency: CodePush.checkFrequency.ON_APP_START}
-  
+
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <NavigationContainer>
+      <Router />
+    </NavigationContainer>
   )
 }
 
-export default codePush(codePushOptions)(App)
-// export default App
+
+export default App
 
 const styles = StyleSheet.create({})
