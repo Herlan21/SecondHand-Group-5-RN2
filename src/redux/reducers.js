@@ -9,6 +9,11 @@ export default (state = initialState, action) => {
                 ...state, //copy all previous states
                 authToken: action.payload,
             }
+        case 'REGISTER':
+            return {
+                ...state, //copy all previous states
+                authToken: action.payload,
+            }
         case 'LOGOUT':
             return {
                 authToken: null,
