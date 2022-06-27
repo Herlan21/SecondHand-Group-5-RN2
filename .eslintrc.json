@@ -19,5 +19,18 @@
         "react"
     ],
     "rules": {
+        // allow .js files to contain JSX code
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+
+        // prevent eslint to complain about the "styles" variable being used before it was defined
+        "no-use-before-define": ["error", { "variables": false }],
+
+        // disable prop types check
+        "react/prop-types": 0,
+        "no-console":"off",
+        "linebreak-style": ["error", "windows"],
+        "no-unused-vars": "off",
+        "max-len": "off",
+        "import/prefer-default-export": "off"
     }
 }
