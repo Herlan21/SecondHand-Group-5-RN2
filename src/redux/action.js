@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import axios from "axios"
+import { API_LOGIN, API_REGISTER } from "../config";
 
 export const Init = () => {
     return async dispatch => {
@@ -17,7 +18,8 @@ export const Init = () => {
 export const Login = (email, password) => {
     return dispatch => {
         let token = null;
-        axios.post('https://market-final-project.herokuapp.com/auth/login', {
+        axios.post(API_LOGIN, {
+            // axios.post('https://market-final-project.herokuapp.com/auth/login', {
             email,
             password,
         }).then(res => {
@@ -39,15 +41,16 @@ export const Login = (email, password) => {
         })
     }
 }
-export const RegisterAction = (full_name, email, password, phone_number, address, city) => {
+export const RegisterAction = (full_name, email, password, phone_number, address, city, navigation) => {
     return dispatch => {
         let token = null;
-        axios.post('https://market-final-project.herokuapp.com/auth/register', {
+        axios.post(API_REGISTER, {
             email,
             password, full_name, phone_number, address, city
         }).then(res => {
             console.log(res)
             alert('success', 'Berhasil melakukan registrasi')
+            navigation.navigate('Login')
         }).catch(function (error) {
             if (error.response) {
                 alert(error.response.data.message)

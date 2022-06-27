@@ -10,8 +10,8 @@ const Register = ({ navigation }) => {
     const dispatch = useDispatch()
     const handleSubmit = (values) => {
         console.log(values)
-        dispatch(RegisterAction(values.full_name, values.email, values.password, values.phone_number, values.address, values.city))
-        navigation.navigate('Login')
+        dispatch(RegisterAction(values.full_name, values.email, values.password, values.phone_number, values.address, values.city, navigation))
+        // navigation.navigate('Login')
     };
 
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
