@@ -4,9 +4,11 @@
         "es2021": true
     },
     "extends": [
-        "eslint:recommended",
         "plugin:react/recommended",
-        "prettier"
+        "airbnb",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -25,12 +27,15 @@
         // prevent eslint to complain about the "styles" variable being used before it was defined
         "no-use-before-define": ["error", { "variables": false }],
 
+        "react/jsx-props-no-spreading": "off",
+
         // disable prop types check
         "react/prop-types": 0,
         "no-console":"off",
         "linebreak-style": ["error", "windows"],
         "no-unused-vars": "off",
         "max-len": "off",
-        "import/prefer-default-export": "off"
-    }
+        "import/prefer-default-export": "off",
+        "default-param-last": 0
+   }
 }

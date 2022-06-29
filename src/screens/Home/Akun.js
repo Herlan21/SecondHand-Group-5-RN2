@@ -1,28 +1,35 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { Logout } from '../../redux/action'
-import { useDispatch, useSelector } from 'react-redux'
+import { purple, black } from '../../constant'
+import { AkunMenu } from '../../components'
+import Icon from 'react-native-vector-icons/Feather'
 
-const dispatch = useDispatch()
-const logout = () => {
-  dispatch(Logout())
-}
 
 const Akun = () => {
+
+  
   return (
     <View style={{ flex: 1 }}>
-      <Text>Akun</Text>
-      <TouchableOpacity
-        onPress={() => logout()}
-        style={{ alignSelf: 'center', backgroundColor: 'red', padding: 8, borderRadius: 8 }}>
-        <View>
-          <Text style={{ color: 'white' }}>Logout</Text>
-        </View>
-      </TouchableOpacity>
+
+      <Text style={styles.akun}>Akun Saya</Text>
+
+      <AkunMenu />
+
     </View>
   )
 }
 
 export default Akun
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+
+  akun: {
+    fontWeight: 'bold',
+    color: black,
+    fontSize: 20,
+    top: 20,
+    left: 20,
+  },
+
+
+})
