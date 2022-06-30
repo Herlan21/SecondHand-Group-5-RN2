@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Home, Notifikasi, Jual, DaftarJual, Akun, Login, Register } from "../screens"
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { purple } from "../constant";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from "react-native-vector-icons/Feather";
 import { View, ActivityIndicator } from 'react-native';
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import { Init } from "../redux/action";
-import store from "../redux/store";
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from "react-native-vector-icons/Feather";
+import { purple } from "../constant";
+import { Home, Notifikasi, Jual, DaftarJual, Akun, Login, Register } from "../screens"
+import { Init } from "../redux/action/actionAuth";
+import { store } from "../redux/store/store";
 
 
 const Stack = createNativeStackNavigator()

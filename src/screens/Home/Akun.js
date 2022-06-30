@@ -1,14 +1,17 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { Logout } from '../../redux/action'
+import { Logout } from '../../redux/action/actionAuth'
 import { useDispatch, useSelector } from 'react-redux'
 
-const dispatch = useDispatch()
-const logout = () => {
-  dispatch(Logout())
-}
 
 const Akun = () => {
+
+  const dispatch = useDispatch()
+
+  const logout = () => {
+    dispatch(Logout())
+  }
+  
   return (
     <View style={{ flex: 1 }}>
       <Text>Akun</Text>
