@@ -1,7 +1,7 @@
 import { View, Text, Image, TextInput, Button, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Login } from '../../redux/action'
+import { Login } from '../../redux/action/actionAuth'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import Input from './Input'

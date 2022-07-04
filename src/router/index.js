@@ -6,8 +6,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from "react-native-vector-icons/Feather";
 import { View, ActivityIndicator } from 'react-native';
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import { Init } from "../redux/action";
-import store from "../redux/store";
+import { Init } from "../redux/action/actionAuth";
+import store from "../redux/store/store";
 
 
 const Stack = createNativeStackNavigator()

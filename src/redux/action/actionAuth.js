@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import axios from "axios"
-import { API_LOGIN, API_REGISTER } from "../config";
+import { API_LOGIN, API_REGISTER } from "../../config";
 
 export const Init = () => {
     return async dispatch => {

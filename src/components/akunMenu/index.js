@@ -3,7 +3,7 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/Feather'
 import { purple, black, purple1, white } from '../../constant'
 import { useDispatch} from 'react-redux'
-import { Logout } from '../../redux/action'
+import { Logout } from '../../redux/action/actionAuth'
 
 
 const AkunMenu = () => {

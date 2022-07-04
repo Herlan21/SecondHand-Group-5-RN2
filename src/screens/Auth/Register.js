@@ -1,7 +1,7 @@
 import { View, Text, Button, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { RegisterAction } from '../../redux/action'
+import { RegisterAction } from '../../redux/action/actionAuth'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import Input from './Input'
