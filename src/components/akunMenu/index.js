@@ -2,13 +2,15 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Feather'
 import { purple, black, purple1, white } from '../../constant'
-import { useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Logout } from '../../redux/action/actionAuth'
+// import { useNavigation } from '@react-navigation/native';
 
-
-const AkunMenu = () => {
+const AkunMenu = ({ navigation }) => {
 
   const dispatch = useDispatch()
+  // const navigation = useNavigation();
+
   const logout = () => {
     dispatch(Logout())
   }
@@ -20,8 +22,8 @@ const AkunMenu = () => {
         <Icon style={styles.logoCamera} name="camera" size={28} color={purple} />
       </TouchableOpacity>
 
-      <View style={{ marginHorizontal: 20, marginTop: 20}}>
-        <TouchableOpacity style={styles.akunSettingWrapper}>
+      <View style={{ marginHorizontal: 20, marginTop: 20 }}>
+        <TouchableOpacity style={styles.akunSettingWrapper} onPress={() => navigation.navigate('ChangeProfile')} >
           <Icon style={styles.akunSetting} name="edit-2" size={28} color={purple} />
           <Text style={styles.akunSettingText}>Ubah Akun</Text>
         </TouchableOpacity>
@@ -46,7 +48,7 @@ export default AkunMenu
 
 const styles = StyleSheet.create({
 
-  container:{
+  container: {
     flex: 1,
   },
 

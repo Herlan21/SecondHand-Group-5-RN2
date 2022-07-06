@@ -1,19 +1,41 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React from 'react'
-import { purple, black } from '../../constant'
-import { AkunMenu } from '../../components'
-import Icon from 'react-native-vector-icons/Feather'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, { useEffect } from 'react';
+import Icon from 'react-native-vector-icons/Feather';
+import { useSelector, useDispatch } from 'react-redux';
+import { useIsFocused } from '@react-navigation/native';
+import { purple, black } from '../../constant';
+import { AkunMenu } from '../../components';
+import { profileData} from '../../redux/action/getProfileData'
 
+const Akun = ({navigation}) => {
 
-const Akun = () => {
+  const dispatch = useDispatch();
+  const isFocused = useIsFocused();
 
-  
+  const token = useSelector(state => state.AuthReducers.authToken);
+
+  const profileUser = useSelector((state) => state.ProfileReducer.profileUser);
+
+  useEffect(() => {
+    if (isFocused) {
+      dispatch(profileData(token))
+      console.log(token);
+    }
+  }, [isFocused])
+
   return (
     <View style={{ flex: 1 }}>
 
+
       <Text style={styles.akun}>Akun Saya</Text>
 
-      <AkunMenu />
+
+      <AkunMenu navigation={navigation} />
+
+      <View>
+        <Text style={{ color: '#000' }}>{profileUser.full_name}</Text>
+      </View>
+
 
     </View>
   )

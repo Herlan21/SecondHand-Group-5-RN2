@@ -5,6 +5,7 @@ import Jual from './Home/Jual'
 import Akun from './Home/Akun'
 import Login from './Auth/Login'
 import Register from './Auth/Register'
+import ChangeProfile from './ChangeProfile/ChangeProfile';
 
 
-export { Home, DaftarJual, Notifikasi, Jual, Akun, Login, Register }
+export { Home, DaftarJual, Notifikasi, Jual, Akun, Login, Register, ChangeProfile }

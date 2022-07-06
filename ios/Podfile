@@ -21,6 +21,8 @@ target 'SecondHand_Group5' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
   target 'SecondHand_Group5Tests' do
     inherit! :complete
     # Pods for testing

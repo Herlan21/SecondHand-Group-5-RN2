@@ -41,6 +41,8 @@ export const Login = (email, password) => {
         })
     }
 }
+
+
 export const RegisterAction = (full_name, email, password, phone_number, address, city, navigation) => {
     return dispatch => {
         let token = null;
