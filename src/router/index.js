@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Home, Notifikasi, Jual, DaftarJual, Akun, Login, Register } from "../screens"
+import { Home, Notifikasi, Jual, DaftarJual, Akun, Login, Register, ChangeProfile } from "../screens"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { purple } from "../constant";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -73,11 +73,22 @@ const AuthStack = () => {
             />
 
             <Stack.Screen
+                name="MainApp"
+                component={MainApp}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
                 name="Akun"
                 component={Akun}
                 options={{ headerShown: false }}
             />
 
+            <Stack.Screen
+                name="ChangeProfile"
+                component={ChangeProfile}
+                options={{ headerShown: false }}
+            />
 
         </Stack.Navigator>
     );
@@ -86,9 +97,10 @@ const AuthStack = () => {
 const RootNavigation = () => {
     const token = useSelector(state => state.AuthReducers.authToken);
     console.log(token);
-    const [loading, setLoading] = useState(true);
 
+    const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
+
     const init = async () => {
         await dispatch(Init());
         setLoading(false);

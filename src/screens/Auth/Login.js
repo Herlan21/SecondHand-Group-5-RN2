@@ -8,6 +8,7 @@ import Input from './Input'
 
 const LoginScreen = ({ navigation }) => {
     const dispatch = useDispatch()
+    
     const handleSubmit = (values) => {
         dispatch(Login(values.email, values.password))
         console.log(values.password)
