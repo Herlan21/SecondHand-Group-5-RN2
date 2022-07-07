@@ -27,7 +27,7 @@ export const ProfileData = payload => ({
 
 export const profileData = (authToken) => async dispatch => {
   try {
-    await axios.get('https://market-final-project.herokuapp.com/auth/user/', {
+    await axios.get(API_GET_PROFILE, {
       headers: {
         access_token: authToken, 
       }
