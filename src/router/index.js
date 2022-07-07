@@ -59,7 +59,7 @@ const MainApp = () => {
 
 const AuthStack = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="ChangeProfile">
             <Stack.Screen
                 name="Login"
                 component={Login}
