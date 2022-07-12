@@ -8,22 +8,6 @@ export const ProfileData = payload => ({
   payload: payload
 });
 
-// export const profileData = (full_name, email) => {
-//   return dispatch => {
-//       axios.get(API_GET_PROFILE, {
-//           full_name,
-//           email
-//       }).then(res => {
-//           let data = res.data
-//           let ApiToken = data.access_token
-//           console.log(data.access_token)
-
-//           dispatch({payload: {authToken: ApiToken,}})
-//           dispatch(ProfileData(res.data))
-//           console.log('Get profile data berhasil');
-//       })
-//   }
-// }
 
 export const profileData = (authToken) => async dispatch => {
   try {
@@ -35,6 +19,7 @@ export const profileData = (authToken) => async dispatch => {
       .then(value => {
         console.log(value);
         dispatch(ProfileData(value.data));
+        console.log('Get profile Success');
       
       });
   } catch (error) {
@@ -42,15 +27,3 @@ export const profileData = (authToken) => async dispatch => {
   }
 };
 
-
-// export function profileData() {
-//   return async dispatch => {
-//     await axios.get(API_GET_PROFILE)
-//       .then(async response => {
-//         dispatch(ProfileData(response.data))
-//       })
-//       .catch(error => {
-//         console.log(error);
-//       });
-//   }
-// }

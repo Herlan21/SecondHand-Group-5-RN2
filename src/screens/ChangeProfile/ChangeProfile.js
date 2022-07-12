@@ -6,7 +6,7 @@ import { InputText, DropdownInput } from '../../components'
 import regions from '../../constant/regions'
 
 
-const ChangeProfile = () => {
+const ChangeProfile = ({navigation}) => {
   return (
 
     <View style={{ flex: 1, backgroundColor: white }}>
@@ -15,7 +15,7 @@ const ChangeProfile = () => {
         <Text style={styles.lengkapiProfile}>Lengkapi Info Akun</Text>
 
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('MainApp')}>
             <Icon style={styles.logoBack} name="arrow-left" size={28} color={black} />
           </TouchableOpacity>
 
