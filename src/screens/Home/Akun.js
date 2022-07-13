@@ -18,7 +18,7 @@ const Akun = ({ navigation }) => {
 
   useEffect(() => {
     if (isFocused) {
-      dispatch(profileData(token))
+      dispatch(profileData(token.authToken)) //ngambil api dengan parameter token
       console.log(token);
     }
   }, [isFocused])

@@ -28,7 +28,7 @@ const AkunMenu = ({ navigation }) => {
           <Text style={styles.akunSettingText}>Ubah Akun</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.akunSettingWrapper}>
+        <TouchableOpacity style={styles.akunSettingWrapper} onPress={() => navigation.navigate('Setting')}>
           <Icon style={styles.akunSetting} name="settings" size={28} color={purple} />
           <Text style={styles.akunSettingText}>Pengaturan</Text>
         </TouchableOpacity>
