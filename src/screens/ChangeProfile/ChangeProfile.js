@@ -1,12 +1,28 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Icon from 'react-native-vector-icons/Feather'
+import { useSelector, useDispatch } from 'react-redux';
 import { purple, black, purple1, white } from '../../constant'
+import { useIsFocused } from '@react-navigation/native';
 import { InputText, DropdownInput } from '../../components'
 import regions from '../../constant/regions'
+import { profileData } from '../../redux/action/getProfileData'
 
 
-const ChangeProfile = ({navigation}) => {
+const ChangeProfile = ({ navigation }) => {
+
+  const dispatch = useDispatch();
+  const isFocused = useIsFocused();
+  const token = useSelector(state => state.AuthReducers.authToken);
+  const profileUser = useSelector((state) => state.ProfileReducer.profileUser);
+
+  useEffect(() => {
+    if (isFocused) {
+      dispatch(profileData(token))
+      console.log(token);
+    }
+  }, [isFocused])
+
   return (
 
     <View style={{ flex: 1, backgroundColor: white }}>
@@ -29,17 +45,22 @@ const ChangeProfile = ({navigation}) => {
               <InputText
                 name="Nama"
                 placeholder="Nama"
+                value={profileUser.full_name}
               />
 
               <Text style={styles.wrapperJudul}>Kota</Text>
-              <DropdownInput 
-                data={regions}
-              />
+              <View style={styles.drop}>
+                <DropdownInput
+                  data={regions}
+                  value={profileUser.city}
+                />
+              </View>
 
               <Text style={styles.wrapperJudul}>Alamat</Text>
               <InputText
                 name="Alamat"
                 placeholder="Alamat"
+                value={profileUser.address}
                 style={{ textAlignVertical: 'top', height: 100 }}
               />
 
@@ -47,6 +68,7 @@ const ChangeProfile = ({navigation}) => {
               <InputText
                 name="NoHandphone"
                 placeholder="No Handphone"
+                value={profileUser.phone_number}
               />
 
               <View>
@@ -106,8 +128,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     paddingVertical: 10,
-  
-    
+
+  },
+
+  drop: {
+    margin: 16
   },
 
   buttonSimpan: {

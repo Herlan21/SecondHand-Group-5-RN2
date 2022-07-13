@@ -33,8 +33,8 @@ const Akun = ({ navigation }) => {
 
       <AkunMenu navigation={navigation} />
 
-    <View>
-</View>
+      <View>
+      </View>
 
 
     </View>

@@ -13,46 +13,6 @@ import store from "../redux/store/store";
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator();
 
-
-const MainStack = () => {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen
-                name="MainApp"
-                component={MainApp}
-                options={{ headerShown: false }}
-            />
-
-            <Stack.Screen
-                name="Login"
-                component={Login}
-                options={{ headerShown: false }}
-            />
-
-            <Stack.Screen
-                name="Register"
-                component={Register}
-                options={{ headerShown: false }}
-            />
-
-
-            <Stack.Screen
-                name="Akun"
-                component={Akun}
-                options={{ headerShown: false }}
-            />
-
-            <Stack.Screen
-                name="ChangeProfile"
-                component={ChangeProfile}
-                options={{ headerShown: false }}
-            />
-
-        </Stack.Navigator>
-    );
-};
-
-
 const MainApp = () => {
     return (
         <Tab.Navigator screenOptions={{
@@ -97,15 +57,55 @@ const MainApp = () => {
     )
 }
 
+const AuthStack = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Register"
+                component={Register}
+                options={{ headerShown: false }}
+            />
+        </Stack.Navigator>
+    );
+};
 
+const MainStack = () => {
+    return (
+        <Stack.Navigator>
+
+            <Stack.Screen
+                name="MainApp"
+                component={MainApp}
+                options={{ headerShown: false }}
+            />
+            
+            <Stack.Screen
+                name="Akun"
+                component={Akun}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="ChangeProfile"
+                component={ChangeProfile}
+                options={{ headerShown: false }}
+            />
+
+        </Stack.Navigator>
+    );
+};
 
 const RootNavigation = () => {
     const token = useSelector(state => state.AuthReducers.authToken);
     console.log(token);
-
     const [loading, setLoading] = useState(true);
-    const dispatch = useDispatch();
 
+    const dispatch = useDispatch();
     const init = async () => {
         await dispatch(Init());
         setLoading(false);
@@ -123,9 +123,8 @@ const RootNavigation = () => {
         )
     }
 
-    return token  ===  null  ?  <MainStack /> : <MainStack /> 
+    return token === null ? <AuthStack /> : <MainStack />;
 };
-
 const Router = () => {
     return (
         <Provider store={store}>
