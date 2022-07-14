@@ -27,7 +27,7 @@ export const changePassword = (authToken, current_password, new_password, confir
                 console.log(value);
                 navigation.navigate('MainApp')
                 // dispatch(ProfileData(value.data));
-                console.log('Get profile Success');
+                console.log('Success Change Password');
 
             });
     } catch (error) {

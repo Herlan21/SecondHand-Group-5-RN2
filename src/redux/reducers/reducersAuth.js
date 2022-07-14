@@ -7,7 +7,7 @@ export default (state = initialState, action) => {
         case 'LOGIN':
             return {
                 ...state, //copy all previous states
-                authToken: action.payload,
+                authToken: typeof action.payload === 'string' ? action.payload : action.payload.authToken,
             }
         case 'REGISTER':
             return {

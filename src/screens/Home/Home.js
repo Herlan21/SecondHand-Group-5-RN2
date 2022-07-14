@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { productData } from '../../redux/action/getProductData';
-import PagerView from 'react-native-pager-view';
 import { black } from '../../constant/index';
 
 const Home = () => {
@@ -19,10 +18,10 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(productData({
-      // status: 'available',
-      // category_id: categoryId !== 0 ? categoryId : '',
-      // search: querySearch,
-      // page: page,
+      status: 'available',
+      category_id: categoryId !== 0 ? categoryId : '',
+      search: querySearch,
+      page: page,
     }))
   }, [])
 
@@ -31,6 +30,7 @@ const Home = () => {
     <View style={styles.container}>
 
       <View>
+        <Text>Home</Text>
         <Text>{dataProduct.name}</Text>
       </View>
 
