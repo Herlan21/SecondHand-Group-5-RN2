@@ -8,6 +8,7 @@ import { View, ActivityIndicator } from 'react-native';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { Init } from "../redux/action/actionAuth";
 import store from "../redux/store/store";
+import Setting from "../screens/Setting";
 
 
 const Stack = createNativeStackNavigator()
@@ -83,7 +84,7 @@ const MainStack = () => {
                 component={MainApp}
                 options={{ headerShown: false }}
             />
-            
+
             <Stack.Screen
                 name="Akun"
                 component={Akun}
@@ -93,6 +94,13 @@ const MainStack = () => {
             <Stack.Screen
                 name="ChangeProfile"
                 component={ChangeProfile}
+                options={{ headerShown: false }}
+            />
+
+
+            <Stack.Screen
+                name="Setting"
+                component={Setting}
                 options={{ headerShown: false }}
             />
 

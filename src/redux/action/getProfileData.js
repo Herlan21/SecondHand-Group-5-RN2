@@ -9,7 +9,7 @@ export const ProfileData = payload => ({
 });
 
 
-export const profileData = (authToken) => async dispatch => {
+export const profileData = (authToken) => async dispatch => { //method yang di panggil nanti di screen
   try {
     await axios.get(API_GET_PROFILE, {
       headers: {
