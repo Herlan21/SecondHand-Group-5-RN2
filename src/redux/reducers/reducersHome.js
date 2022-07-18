@@ -20,6 +20,23 @@ const ProductReducer = (state = initialState, action = {}) => {
         ...state,
         dataProduct: action.payload,
       };
+
+    case GET_PRODUCT_FAILED:
+      return {
+        ...state,
+      };
+
+      case GET_BANNER_SUCCESS:
+      return {
+        ...state,
+        dataBanner: action.payload,
+      };
+
+      case GET_BANNER_FAILED:
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }
