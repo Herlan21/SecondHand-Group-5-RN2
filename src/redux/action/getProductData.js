@@ -15,9 +15,9 @@ export const ProductDataFailed = () => ({
 
 export const productData = (props) => async dispatch => {
   try {
-    await axios.get(`${API_GET_PRODUCT}?status=${props.status}&category_id=${props.category_id}&search=${props.search}&page=${props.page}&per_page=10`)
+    await axios.get(`${API_GET_PRODUCT}?status=${props?.status}&category_id=${props?.category_id}&search=${props?.search}&page=${props?.page}&per_page=10`)
+    
       .then(value => {
-        console.log(value);
         dispatch(ProductData(value.data));
         console.log('Get product Success');
       });
