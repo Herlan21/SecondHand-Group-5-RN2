@@ -19,7 +19,7 @@ export const Login = (email, password) => {
     return dispatch => {
         let token = null;
         axios.post(API_LOGIN, {
-            // axios.post('https://market-final-project.herokuapp.com/auth/login', {
+
             email,
             password,
         }).then(res => {
@@ -36,7 +36,7 @@ export const Login = (email, password) => {
             })
         }).catch(function (error) {
             if (error.response) {
-                alert(error.response.data.message)
+                alert(error.message)
             }
         })
     }
@@ -55,7 +55,7 @@ export const RegisterAction = (full_name, email, password, phone_number, address
             navigation.navigate('Login')
         }).catch(function (error) {
             if (error.response) {
-                alert(error.response.data.message)
+                alert(error.message)
             }
         })
     }
