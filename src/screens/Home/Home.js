@@ -8,8 +8,9 @@ import { productData } from '../../redux/action/getProductData';
 import { getBanner, getCategories } from '../../redux/action/getSeller';
 
 import { black } from '../../constant/index';
+import { Card } from '../../components';
 
-const Home = () => {
+const Home = ({ navigation }) => {
 
   const dispatch = useDispatch();
   const isFocused = useIsFocused();
@@ -44,33 +45,36 @@ const Home = () => {
     }
   }, [dispatch, page, querySearch, categoryId])
 
-  // const getAllProduct = useCallback(() => {
-  //   dispatch(productData());
-  // }, []);
-
   function header() {
     return (
 
       <View>
 
-        <View>
-          <ScrollView horizontal>
-            {dataCategories.map((item) => (
-              <TouchableOpacity key={item.id}>
-                <Text>{item.name}</Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
+        {/* kategori */}
+        <TouchableOpacity>
+          <View>
+            <ScrollView horizontal>
+              {dataCategories.map((item) => (
+                <TouchableOpacity key={item.id}>
+                  <Text>{item.name}</Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+        </TouchableOpacity>
 
         {/* BANNER */}
+
         <ScrollView horizontal>
           {dataBanner.map((item) => (
-            <Image
-              key={item?.id}
-              source={{ uri: item.image_url }}
-              style={styles.image}
-            />
+
+            <TouchableOpacity>
+              <Image
+                key={item?.id}
+                source={{ uri: item.image_url }}
+                style={styles.image}
+              />
+            </TouchableOpacity>
           ))}
         </ScrollView>
       </View>
@@ -79,10 +83,15 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <View>
 
+      <View>
+       
+      </View>
+
+      {/* produk */}
+      <View>
         <FlatList
-          data={dataProduct?.data}
+          data={dataProduct}
           ListHeaderComponent={header}
           numColumns={2}
           keyExtractor={(item, index) => item.id + index.toString()}
@@ -92,16 +101,23 @@ const Home = () => {
           }}
 
           renderItem={({ item }) => (
-            <Image
-              source={{ uri: item.image_url }}
-              style={styles.image}
+            <Card 
+              name={item?.name}
+              category={item?.Categories}
+              basePrice={item?.base_price}
+              imageUrl={item?.image_url}
+              onPress={() => navigation.navigate('Detail', {IdProduct : item.id})}
             />
+
+            // <TouchableOpacity>
+            //   <Image
+            //     source={{ uri: item.image_url }}
+            //     style={styles.image}
+            //   />
+            // </TouchableOpacity>
           )}
         />
       </View>
-
-
-
     </View>
   );
 };

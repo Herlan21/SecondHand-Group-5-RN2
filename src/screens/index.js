@@ -6,6 +6,7 @@ import Akun from './Home/Akun'
 import Login from './Auth/Login'
 import Register from './Auth/Register'
 import ChangeProfile from './ChangeProfile/ChangeProfile';
+import Detail from './DetailProduct'
 
 
-export { Home, DaftarJual, Notifikasi, Jual, Akun, Login, Register, ChangeProfile }
+export { Home, DaftarJual, Notifikasi, Jual, Akun, Login, Register, ChangeProfile, Detail }
