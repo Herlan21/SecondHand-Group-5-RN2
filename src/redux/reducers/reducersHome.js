@@ -37,6 +37,17 @@ const ProductReducer = (state = initialState, action = {}) => {
         ...state,
       };
 
+      case GET_CATEGORIES_SUCCESS:
+      return {
+        ...state,
+        dataCategories: action.payload,
+      };
+
+      case GET_CATEGORIES_FAILED:
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }
