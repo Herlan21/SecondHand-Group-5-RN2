@@ -19,12 +19,6 @@ const MainApp = () => {
         <Tab.Navigator screenOptions={{
             tabBarActiveTintColor: purple
         }} >
-            <Tab.Screen name="DaftarJual" component={DaftarJual}
-                options={{
-                    headerShown: false,
-                    tabBarIcon: ({ color }) => (<Icon name="list" color={color} size={24} />)
-                }}
-            />
 
             <Tab.Screen
                 name="Home"
@@ -46,6 +40,13 @@ const MainApp = () => {
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color }) => (<Icon name="plus" color={color} size={24} />)
+                }}
+            />
+
+            <Tab.Screen name="DaftarJual" component={DaftarJual}
+                options={{
+                    headerShown: false,
+                    tabBarIcon: ({ color }) => (<Icon name="list" color={color} size={24} />)
                 }}
             />
             <Tab.Screen name="Akun" component={Akun}

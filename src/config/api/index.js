@@ -18,3 +18,4 @@ export const API_GET_PRODUCT = getApiUrl('/buyer/product');
 // SELLER
 export const API_GET_CATEGORY = getApiUrl('/seller/category');
 export const API_GET_BANNER = getApiUrl('/seller/banner');
+export const API_GET_SELLER_PRODUCT = getApiUrl('/seller/product');
