@@ -15,6 +15,9 @@ export const API_PUT_PASSWORD = getApiUrl('/auth/change-password');
 // BUYER
 export const API_GET_PRODUCT = getApiUrl('/buyer/product');
 
+// BUYER BID
+export const API_BID_PRODUCT = getApiUrl('/buyer/order');
+
 // SELLER
 export const API_GET_CATEGORY = getApiUrl('/seller/category');
 export const API_GET_BANNER = getApiUrl('/seller/banner');

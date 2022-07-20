@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useIsFocused } from '@react-navigation/native';
 import PagerView from 'react-native-pager-view';
 
-import { productData } from '../../redux/action/getProductData';
+import { productData, productDetail } from '../../redux/action/getProductData';
 import { getBanner, getCategories } from '../../redux/action/getSeller';
 
 import { black } from '../../constant/index';
@@ -19,7 +19,7 @@ const Home = ({ navigation }) => {
   const dataProduct = useSelector((state) => state.ProductReducer.dataProduct);
   const dataBanner = useSelector((state) => state.ProductReducer.dataBanner);
   const dataCategories = useSelector((state) => state.ProductReducer.dataCategories);
-
+  const dataDetail = useSelector((state) => state.ProductReducer.detailProduct);
 
   const [categoryId, setCategoryId] = useState(0);
   const [querySearch, setQuerySearch] = useState('');
@@ -45,38 +45,36 @@ const Home = ({ navigation }) => {
     }
   }, [dispatch, page, querySearch, categoryId])
 
+
   function header() {
     return (
 
       <View>
-
-        {/* kategori */}
         <TouchableOpacity>
-          <View>
-            <ScrollView horizontal>
-              {dataCategories.map((item) => (
-                <TouchableOpacity key={item.id}>
-                  <Text>{item.name}</Text>
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
-          </View>
+          <ScrollView horizontal>
+            {dataCategories?.map((item) => (
+              <TouchableOpacity
+                key={item?.id}>
+                <Text>{item?.name}</Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
         </TouchableOpacity>
+        
 
-        {/* BANNER */}
-
-        <ScrollView horizontal>
-          {dataBanner.map((item) => (
-
-            <TouchableOpacity>
-              <Image
-                key={item?.id}
-                source={{ uri: item.image_url }}
-                style={styles.image}
-              />
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+        <View>
+          <ScrollView horizontal>
+            {dataBanner?.map((item) => (
+              <TouchableOpacity>
+                <Image
+                  key={item.id}
+                  source={{ uri: item.image_url }}
+                  style={styles.image}
+                />
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
       </View>
     )
   }
@@ -84,11 +82,7 @@ const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
 
-      <View>
-       
-      </View>
 
-      {/* produk */}
       <View>
         <FlatList
           data={dataProduct}
@@ -101,12 +95,13 @@ const Home = ({ navigation }) => {
           }}
 
           renderItem={({ item }) => (
-            <Card 
+            <Card
+
               name={item?.name}
               category={item?.Categories}
               basePrice={item?.base_price}
               imageUrl={item?.image_url}
-              onPress={() => navigation.navigate('Detail', {IdProduct : item.id})}
+              onPress={() => navigation.navigate('Detail', { IdProduct: item.id })}
             />
 
             // <TouchableOpacity>
