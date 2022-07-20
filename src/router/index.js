@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Home, Notifikasi, Jual, DaftarJual, Akun, Login, Register, ChangeProfile } from "../screens"
+import { Home, Notifikasi, Jual, DaftarJual, Akun, Login, Register, ChangeProfile, Detail } from "../screens"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { purple } from "../constant";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -102,6 +102,12 @@ const MainStack = () => {
             <Stack.Screen
                 name="Setting"
                 component={Setting}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="Detail"
+                component={Detail}
                 options={{ headerShown: false }}
             />
 
