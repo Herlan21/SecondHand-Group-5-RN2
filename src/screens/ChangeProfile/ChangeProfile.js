@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Icon from 'react-native-vector-icons/Feather'
 import { useSelector, useDispatch } from 'react-redux';
 import { purple, black, purple1, white } from '../../constant'
@@ -9,12 +9,16 @@ import regions from '../../constant/regions'
 import { profileData } from '../../redux/action/getProfileData'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import axios from 'axios';
-import { useState } from 'react';
+import { changeProfile } from '../../redux/action/putChangeProfile';
 
 
 const ChangeProfile = ({ navigation }) => {
 
-  const [data, setData] = useState();
+  const [full_name, setFull_name] = useState('');
+  const [city, setCity] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone_number, setPhone_number] = useState('');
+
   const options = {
     title: 'Select Image',
     type: 'library',
@@ -27,39 +31,31 @@ const ChangeProfile = ({ navigation }) => {
     }
   }
 
-  const handleClick = async () => {
-    axios.put('https://market-final-project.herokuapp.com/auth/user', { image_url: data })
-      .then(response => console.log(response.data));
-  };
+  const dispatch = useDispatch();
+  const isFocused = useIsFocused();
+  const token = useSelector(state => state.AuthReducers.authToken);
+  const profileUser = useSelector((state) => state.ProfileReducer.profileUser);
+  console.log(profileUser)
+
   const openGallery = async () => {
     const images = await launchImageLibrary(options)
-    // setData(images.assets['0'].uri)
     const formdata = new FormData()
     formdata.append('image', {
       uri: images.assets['0'].uri,
       type: images.assets['0'].type,
       name: images.assets['0'].fileName
     })
-    let res = await fetch(
-      'https://market-final-project.herokuapp.com/auth/user',
-      {
-        method: 'put',
-        body: formdata,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFydWxAbWFpbC5jb20iLCJpYXQiOjE2NTgzNzMxMDZ9.QvOBnU2fDcX43C__PwZz5ChDn8AO_WQkIRN-PvuCfQU'
-        },
-      }
-    );
-    let response = await res.json()
-    console.log(response, "responseJson")
-    // console.log(images.assets['0'].uri)
+    console.log(formdata)
+    const config = { headers: { 'Content-Type': 'multipart/form-data', 'access_token': token } }
+
+    let res = await axios.put('https://market-final-project.herokuapp.com/auth/user', formdata, config)
+      .then(response => console.log(response.data))
   }
 
-  const dispatch = useDispatch();
-  const isFocused = useIsFocused();
-  const token = useSelector(state => state.AuthReducers.authToken);
-  const profileUser = useSelector((state) => state.ProfileReducer.profileUser);
+  const handleClick = () => {
+    dispatch(changeProfile(token,
+      full_name, city, address, phone_number))
+  };
 
   useEffect(() => {
     if (isFocused) {
@@ -89,12 +85,15 @@ const ChangeProfile = ({ navigation }) => {
               </TouchableOpacity>
               :
               <View style={styles.Logowrapper}>
-                <Image
-                  style={{ width: 120, height: 120 }}
-                  source={{
-                    uri: `${profileUser.image_url}`,
-                  }}
-                />
+                <TouchableOpacity
+                  onPress={openGallery}>
+                  <Image
+                    style={{ width: 120, height: 120 }}
+                    source={{
+                      uri: `${profileUser.image_url}`,
+                    }}
+                  />
+                </TouchableOpacity>
               </View>
             }
 
@@ -103,30 +102,33 @@ const ChangeProfile = ({ navigation }) => {
               <InputText
                 name="Nama"
                 placeholder="Nama"
-                value={profileUser.full_name}
+                onChangeText={(text) => setFull_name(text)}
+                value={full_name == '' ? profileUser.full_name : full_name}
               />
 
               <Text style={styles.wrapperJudul}>Kota</Text>
-              <View style={styles.drop}>
-                <DropdownInput
-                  data={regions}
-                  value={profileUser.city}
-                />
-              </View>
+              <InputText
+                name="Kota"
+                placeholder="Kota"
+                onChangeText={(text) => setCity(text)}
+                value={city == '' ? profileUser.city : city}
+              />
 
               <Text style={styles.wrapperJudul}>Alamat</Text>
               <InputText
                 name="Alamat"
                 placeholder="Alamat"
-                value={profileUser.address}
                 style={{ textAlignVertical: 'top', height: 100 }}
+                onChangeText={(text) => setAddress(text)}
+                value={address == '' ? profileUser.address : address}
               />
 
               <Text style={styles.wrapperJudul}>No Handphone</Text>
               <InputText
                 name="NoHandphone"
                 placeholder="No Handphone"
-                value={profileUser.phone_number}
+                onChangeText={(text) => setPhone_number(text)}
+                value={phone_number == '' ? profileUser.phone_number : phone_number}
               />
 
               <View>
@@ -138,7 +140,6 @@ const ChangeProfile = ({ navigation }) => {
 
               </View>
             </View>
-
 
           </View>
 
