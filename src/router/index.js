@@ -9,6 +9,7 @@ import { Provider, useDispatch, useSelector } from 'react-redux';
 import { Init } from "../redux/action/actionAuth";
 import store from "../redux/store/store";
 import Setting from "../screens/Setting";
+import AddProduct from "../screens/Seller/AddProduct";
 
 
 const Stack = createNativeStackNavigator()
@@ -108,6 +109,12 @@ const MainStack = () => {
             <Stack.Screen
                 name="Detail"
                 component={Detail}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="AddProduct"
+                component={AddProduct}
                 options={{ headerShown: false }}
             />
 

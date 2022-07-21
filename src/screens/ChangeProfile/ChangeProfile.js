@@ -1,15 +1,60 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React, { useEffect } from 'react'
 import Icon from 'react-native-vector-icons/Feather'
 import { useSelector, useDispatch } from 'react-redux';
 import { purple, black, purple1, white } from '../../constant'
 import { useIsFocused } from '@react-navigation/native';
-import { InputText, DropdownInput } from '../../components'
+import { InputText, DropdownInput, PhotoProfile } from '../../components'
 import regions from '../../constant/regions'
 import { profileData } from '../../redux/action/getProfileData'
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import axios from 'axios';
+import { useState } from 'react';
 
 
 const ChangeProfile = ({ navigation }) => {
+
+  const [data, setData] = useState();
+  const options = {
+    title: 'Select Image',
+    type: 'library',
+    options: {
+      maxHeight: 200,
+      maxWidth: 200,
+      selectionLimit: 1,
+      mediaType: 'photo',
+      includeBase64: false,
+    }
+  }
+
+  const handleClick = async () => {
+    axios.put('https://market-final-project.herokuapp.com/auth/user', { image_url: data })
+      .then(response => console.log(response.data));
+  };
+  const openGallery = async () => {
+    const images = await launchImageLibrary(options)
+    // setData(images.assets['0'].uri)
+    const formdata = new FormData()
+    formdata.append('image', {
+      uri: images.assets['0'].uri,
+      type: images.assets['0'].type,
+      name: images.assets['0'].fileName
+    })
+    let res = await fetch(
+      'https://market-final-project.herokuapp.com/auth/user',
+      {
+        method: 'put',
+        body: formdata,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFydWxAbWFpbC5jb20iLCJpYXQiOjE2NTgzNzMxMDZ9.QvOBnU2fDcX43C__PwZz5ChDn8AO_WQkIRN-PvuCfQU'
+        },
+      }
+    );
+    let response = await res.json()
+    console.log(response, "responseJson")
+    // console.log(images.assets['0'].uri)
+  }
 
   const dispatch = useDispatch();
   const isFocused = useIsFocused();
@@ -36,9 +81,22 @@ const ChangeProfile = ({ navigation }) => {
           </TouchableOpacity>
 
           <View>
-            <TouchableOpacity style={styles.Logowrapper}>
-              <Icon style={styles.logoCamera} name="camera" size={28} color={purple} />
-            </TouchableOpacity>
+            {profileUser.image_url == null ?
+              <TouchableOpacity
+                onPress={openGallery}
+                style={styles.Logowrapper}>
+                <Icon style={styles.logoCamera} name="camera" size={28} color={purple} />
+              </TouchableOpacity>
+              :
+              <View style={styles.Logowrapper}>
+                <Image
+                  style={{ width: 120, height: 120 }}
+                  source={{
+                    uri: `${profileUser.image_url}`,
+                  }}
+                />
+              </View>
+            }
 
             <View>
               <Text style={styles.wrapperJudul}>Nama</Text>
@@ -72,7 +130,9 @@ const ChangeProfile = ({ navigation }) => {
               />
 
               <View>
-                <TouchableOpacity style={styles.buttonSimpan}>
+                <TouchableOpacity
+                  onPress={handleClick}
+                  style={styles.buttonSimpan}>
                   <Text style={styles.simpan}>Simpan</Text>
                 </TouchableOpacity>
 

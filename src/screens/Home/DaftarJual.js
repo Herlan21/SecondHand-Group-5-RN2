@@ -17,7 +17,7 @@ const DaftarJual = ({ navigation }) => {
   const token = useSelector(state => state.AuthReducers.authToken);
   const profileUser = useSelector((state) => state.ProfileReducer.profileUser);
   const sellerProduct = useSelector((state) => state.SellerProductReducer.sellerProduct);
-  const addData = () => console.log('test')
+  const addData = () => navigation.navigate('AddProduct')
 
   useEffect(() => {
     if (isFocused) {
