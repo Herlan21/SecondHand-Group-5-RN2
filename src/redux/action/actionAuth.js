@@ -19,7 +19,6 @@ export const Login = (email, password) => {
     return dispatch => {
         let token = null;
         axios.post(API_LOGIN, {
-
             email,
             password,
         }).then(res => {

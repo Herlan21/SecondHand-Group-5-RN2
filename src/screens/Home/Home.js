@@ -1,143 +1,155 @@
-import { StyleSheet, Text, View, FlatList, Image, ScrollView, TouchableOpacity } from 'react-native'
-import React, { useEffect, useState, useCallback } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import { useIsFocused } from '@react-navigation/native';
-import PagerView from 'react-native-pager-view';
+// import { StyleSheet, Text, View, FlatList, Image, ScrollView, TouchableOpacity } from 'react-native'
+// import React, { useEffect, useState, useCallback } from 'react'
+// import { useSelector, useDispatch } from 'react-redux';
+// import { useIsFocused } from '@react-navigation/native';
+// import PagerView from 'react-native-pager-view';
 
-import { productData } from '../../redux/action/getProductData';
-import { getBanner, getCategories } from '../../redux/action/getSeller';
+// import { productData } from '../../redux/action/getProductData';
+// import { getBanner, getCategories } from '../../redux/action/getSeller';
 
-import { black } from '../../constant/index';
-import { Card } from '../../components';
+// import { black } from '../../constant/index';
+// import { Card } from '../../components';
 
-const Home = ({ navigation }) => {
+// const Home = ({ navigation }) => {
 
-  const dispatch = useDispatch();
-  const isFocused = useIsFocused();
+//   const dispatch = useDispatch();
+//   const isFocused = useIsFocused();
 
-  const token = useSelector(state => state.AuthReducers.authToken);
-  const dataProduct = useSelector((state) => state.ProductReducer.dataProduct);
-  const dataBanner = useSelector((state) => state.ProductReducer.dataBanner);
-  const dataCategories = useSelector((state) => state.ProductReducer.dataCategories);
-
-
-  const [categoryId, setCategoryId] = useState(0);
-  const [querySearch, setQuerySearch] = useState('');
-  const [page, setPage] = useState(1);
+//   const token = useSelector(state => state.AuthReducers.authToken);
+//   const dataProduct = useSelector((state) => state.ProductReducer.dataProduct);
+//   const dataBanner = useSelector((state) => state.ProductReducer.dataBanner);
+//   const dataCategories = useSelector((state) => state.ProductReducer.dataCategories);
 
 
-  useEffect(() => {
+//   const [categoryId, setCategoryId] = useState(0);
+//   const [querySearch, setQuerySearch] = useState('');
+//   const [page, setPage] = useState(1);
 
-    if (isFocused) {
-      dispatch(productData({
-        status: 'available',
-        category_id: categoryId !== 0 ? categoryId : '',
-        search: querySearch,
-        page: page,
-      }))
-      console.log('ini dataProduct', dataProduct)
 
-      dispatch(getBanner())
-      console.log(dataBanner);
+//   useEffect(() => {
 
-      dispatch(getCategories())
-      console.log('sukses bro kategorii GERA CAIR!', dataCategories);
-    }
-  }, [dispatch, page, querySearch, categoryId])
+//     if (isFocused) {
+//       dispatch(productData({
+//         status: 'available',
+//         category_id: categoryId !== 0 ? categoryId : '',
+//         search: querySearch,
+//         page: page,
+//       }))
+//       console.log('ini dataProduct', dataProduct)
 
-  function header() {
-    return (
+//       dispatch(getBanner())
+//       console.log(dataBanner);
 
-      <View>
+//       dispatch(getCategories())
+//       console.log('sukses bro kategorii GERA CAIR!', dataCategories);
+//     }
+//   }, [dispatch, page, querySearch, categoryId])
 
-        {/* kategori */}
-        <TouchableOpacity>
-          <View>
-            <ScrollView horizontal>
-              {dataCategories.map((item) => (
-                <TouchableOpacity key={item.id}>
-                  <Text>{item.name}</Text>
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
-          </View>
-        </TouchableOpacity>
+//   function header() {
+//     return (
 
-        {/* BANNER */}
+//       <View>
 
-        <ScrollView horizontal>
-          {dataBanner.map((item) => (
+//         {/* kategori */}
+//         <TouchableOpacity>
+//           <View>
+//             <ScrollView horizontal>
+//               {dataCategories.map((item) => (
+//                 <TouchableOpacity key={item.id}>
+//                   <Text>{item.name}</Text>
+//                 </TouchableOpacity>
+//               ))}
+//             </ScrollView>
+//           </View>
+//         </TouchableOpacity>
 
-            <TouchableOpacity>
-              <Image
-                key={item?.id}
-                source={{ uri: item.image_url }}
-                style={styles.image}
-              />
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
-    )
-  }
+//         {/* BANNER */}
 
+//         <ScrollView horizontal>
+//           {dataBanner.map((item) => (
+
+//             <TouchableOpacity>
+//               <Image
+//                 key={item?.id}
+//                 source={{ uri: item.image_url }}
+//                 style={styles.image}
+//               />
+//             </TouchableOpacity>
+//           ))}
+//         </ScrollView>
+//       </View>
+//     )
+//   }
+
+//   return (
+//     <View style={styles.container}>
+
+//       <View>
+
+//       </View>
+
+//       {/* produk */}
+//       <View>
+//         <FlatList
+//           data={dataProduct}
+//           ListHeaderComponent={header}
+//           numColumns={2}
+//           keyExtractor={(item, index) => item.id + index.toString()}
+//           columnWrapperStyle={{
+//             marginBottom: 18,
+//             justifyContent: 'space-between',
+//           }}
+
+//           renderItem={({ item }) => (
+//             <Card 
+//               name={item?.name}
+//               category={item?.Categories}
+//               basePrice={item?.base_price}
+//               imageUrl={item?.image_url}
+//               onPress={() => navigation.navigate('Detail', {IdProduct : item.id})}
+//             />
+
+//             // <TouchableOpacity>
+//             //   <Image
+//             //     source={{ uri: item.image_url }}
+//             //     style={styles.image}
+//             //   />
+//             // </TouchableOpacity>
+//           )}
+//         />
+//       </View>
+//     </View>
+//   );
+// };
+
+
+// export default Home
+
+// const styles = StyleSheet.create({
+
+//   container: {
+//     flex: 1,
+//   },
+
+//   name: {
+//     color: black
+//   },
+
+//   image: {
+//     height: 100,
+//     width: 150,
+//   }
+// })
+
+import { View, Text } from 'react-native'
+import React from 'react'
+
+const Home = () => {
   return (
-    <View style={styles.container}>
-
-      <View>
-       
-      </View>
-
-      {/* produk */}
-      <View>
-        <FlatList
-          data={dataProduct}
-          ListHeaderComponent={header}
-          numColumns={2}
-          keyExtractor={(item, index) => item.id + index.toString()}
-          columnWrapperStyle={{
-            marginBottom: 18,
-            justifyContent: 'space-between',
-          }}
-
-          renderItem={({ item }) => (
-            <Card 
-              name={item?.name}
-              category={item?.Categories}
-              basePrice={item?.base_price}
-              imageUrl={item?.image_url}
-              onPress={() => navigation.navigate('Detail', {IdProduct : item.id})}
-            />
-
-            // <TouchableOpacity>
-            //   <Image
-            //     source={{ uri: item.image_url }}
-            //     style={styles.image}
-            //   />
-            // </TouchableOpacity>
-          )}
-        />
-      </View>
+    <View>
+      <Text>Home</Text>
     </View>
-  );
-};
-
+  )
+}
 
 export default Home
-
-const styles = StyleSheet.create({
-
-  container: {
-    flex: 1,
-  },
-
-  name: {
-    color: black
-  },
-
-  image: {
-    height: 100,
-    width: 150,
-  }
-})
-

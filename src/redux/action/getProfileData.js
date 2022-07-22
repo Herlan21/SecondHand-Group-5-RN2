@@ -13,14 +13,14 @@ export const profileData = (authToken) => async dispatch => { //method yang di p
   try {
     await axios.get(API_GET_PROFILE, {
       headers: {
-        access_token: authToken, 
+        access_token: authToken,
       }
     })
       .then(value => {
-        console.log(value);
+        // console.log(value);
         dispatch(ProfileData(value.data));
         console.log('Get profile Success');
-      
+
       });
   } catch (error) {
     console.log(error);
