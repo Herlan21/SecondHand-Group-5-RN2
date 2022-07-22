@@ -1,155 +1,160 @@
-// import { StyleSheet, Text, View, FlatList, Image, ScrollView, TouchableOpacity } from 'react-native'
-// import React, { useEffect, useState, useCallback } from 'react'
-// import { useSelector, useDispatch } from 'react-redux';
-// import { useIsFocused } from '@react-navigation/native';
-// import PagerView from 'react-native-pager-view';
+import { StyleSheet, Text, View, FlatList, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native'
+import React, { useEffect, useState, useCallback } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { useIsFocused } from '@react-navigation/native';
+import PagerView from 'react-native-pager-view';
+import Icon from 'react-native-vector-icons/Feather';
+import { Searchbar } from 'react-native-paper';
 
-// import { productData } from '../../redux/action/getProductData';
-// import { getBanner, getCategories } from '../../redux/action/getSeller';
+import { productData, productDetail } from '../../redux/action/getProductData';
+import { getBanner, getCategories } from '../../redux/action/getSeller';
 
-// import { black } from '../../constant/index';
-// import { Card } from '../../components';
+import { black, white, purple1, purple } from '../../constant/index';
+import { Card } from '../../components';
+import homeStyles from '../../styles/homeStyles'
 
-// const Home = ({ navigation }) => {
+const Home = ({ navigation }) => {
 
-//   const dispatch = useDispatch();
-//   const isFocused = useIsFocused();
+  const { width, height } = Dimensions.get('screen');
+  const dispatch = useDispatch();
+  const isFocused = useIsFocused();
 
-//   const token = useSelector(state => state.AuthReducers.authToken);
-//   const dataProduct = useSelector((state) => state.ProductReducer.dataProduct);
-//   const dataBanner = useSelector((state) => state.ProductReducer.dataBanner);
-//   const dataCategories = useSelector((state) => state.ProductReducer.dataCategories);
+  const token = useSelector(state => state.AuthReducers.authToken);
+  const dataProduct = useSelector((state) => state.ProductReducer.dataProduct);
+  const dataBanner = useSelector((state) => state.ProductReducer.dataBanner);
+  const dataCategories = useSelector((state) => state.ProductReducer.dataCategories);
+  const dataDetail = useSelector((state) => state.ProductReducer.detailProduct);
 
-
-//   const [categoryId, setCategoryId] = useState(0);
-//   const [querySearch, setQuerySearch] = useState('');
-//   const [page, setPage] = useState(1);
-
-
-//   useEffect(() => {
-
-//     if (isFocused) {
-//       dispatch(productData({
-//         status: 'available',
-//         category_id: categoryId !== 0 ? categoryId : '',
-//         search: querySearch,
-//         page: page,
-//       }))
-//       console.log('ini dataProduct', dataProduct)
-
-//       dispatch(getBanner())
-//       console.log(dataBanner);
-
-//       dispatch(getCategories())
-//       console.log('sukses bro kategorii GERA CAIR!', dataCategories);
-//     }
-//   }, [dispatch, page, querySearch, categoryId])
-
-//   function header() {
-//     return (
-
-//       <View>
-
-//         {/* kategori */}
-//         <TouchableOpacity>
-//           <View>
-//             <ScrollView horizontal>
-//               {dataCategories.map((item) => (
-//                 <TouchableOpacity key={item.id}>
-//                   <Text>{item.name}</Text>
-//                 </TouchableOpacity>
-//               ))}
-//             </ScrollView>
-//           </View>
-//         </TouchableOpacity>
-
-//         {/* BANNER */}
-
-//         <ScrollView horizontal>
-//           {dataBanner.map((item) => (
-
-//             <TouchableOpacity>
-//               <Image
-//                 key={item?.id}
-//                 source={{ uri: item.image_url }}
-//                 style={styles.image}
-//               />
-//             </TouchableOpacity>
-//           ))}
-//         </ScrollView>
-//       </View>
-//     )
-//   }
-
-//   return (
-//     <View style={styles.container}>
-
-//       <View>
-
-//       </View>
-
-//       {/* produk */}
-//       <View>
-//         <FlatList
-//           data={dataProduct}
-//           ListHeaderComponent={header}
-//           numColumns={2}
-//           keyExtractor={(item, index) => item.id + index.toString()}
-//           columnWrapperStyle={{
-//             marginBottom: 18,
-//             justifyContent: 'space-between',
-//           }}
-
-//           renderItem={({ item }) => (
-//             <Card 
-//               name={item?.name}
-//               category={item?.Categories}
-//               basePrice={item?.base_price}
-//               imageUrl={item?.image_url}
-//               onPress={() => navigation.navigate('Detail', {IdProduct : item.id})}
-//             />
-
-//             // <TouchableOpacity>
-//             //   <Image
-//             //     source={{ uri: item.image_url }}
-//             //     style={styles.image}
-//             //   />
-//             // </TouchableOpacity>
-//           )}
-//         />
-//       </View>
-//     </View>
-//   );
-// };
+  const [categoryId, setCategoryId] = useState(0);
+  const [querySearch, setQuerySearch] = useState('');
+  const [page, setPage] = useState(1);
 
 
-// export default Home
+  useEffect(() => {
 
-// const styles = StyleSheet.create({
+    if (isFocused) {
+      dispatch(productData({
+        status: 'available',
+        category_id: categoryId !== 0 ? categoryId : '',
+        search: querySearch,
+        page: page,
+      }))
+      console.log('ini dataProduct', dataProduct)
 
-//   container: {
-//     flex: 1,
-//   },
+      dispatch(getBanner())
+      console.log(dataBanner);
 
-//   name: {
-//     color: black
-//   },
+      dispatch(getCategories())
+      console.log('sukses bro kategorii GERA CAIR!', dataCategories);
+    }
+  }, [dispatch, page, querySearch, categoryId])
 
-//   image: {
-//     height: 100,
-//     width: 150,
-//   }
-// })
 
-import { View, Text } from 'react-native'
-import React from 'react'
+  function header() {
+    return (
+      <View style={homeStyles.wrapperSearch}>
+        {/* Seearch */}
+        <Searchbar
+          placeholder="Search"
+          onChangeText={setQuerySearch}
+          value={querySearch}
+        />
 
-const Home = () => {
+
+        {/* BANNER */}
+        <View style={homeStyles.wrapperPagerView}>
+          <PagerView
+            initialPage={0}
+            style={homeStyles.pagerview}>
+
+            {dataBanner?.map((item) => (
+
+              <Image
+                key={item.id}
+                style={homeStyles.image}
+                source={{ uri: item.image_url }}
+              />
+            ))}
+          </PagerView>
+        </View>
+
+        {/* CATEGORIES */}
+
+        <View style={homeStyles.wrapperCategory}>
+
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+
+            <TouchableOpacity style={[homeStyles.categoryButton, { backgroundColor: categoryId === 0 ? purple : purple1 }]} onPress={() => { setCategoryId(0); setPage(1) }}>
+              <Icon name="search" size={20} color="white" style={[homeStyles.categoryIcon, { color: categoryId === 0 ? white : black }]} />
+              <Text style={[homeStyles.categoryName, { color: categoryId === 0 ? white : black }]}>Semua</Text>
+            </TouchableOpacity>
+
+            {dataCategories?.map((item) => (
+
+              <TouchableOpacity style={[homeStyles.categoryButton, { backgroundColor: categoryId === item.id ? purple : purple1 }]} key={item?.id} onPress={() => { setCategoryId(item.id) }}>
+                <Icon name="search" size={20} color="white" style={[homeStyles.categoryIcon, { color: categoryId === item.id ? white : black }]} />
+                <Text style={[homeStyles.categoryName, { color: categoryId === item.id ? white : black }]}>{item?.name}</Text>
+              </TouchableOpacity>
+
+            ))}
+          </ScrollView>
+
+        </View>
+      </View>
+    )
+  }
+
+  const footer = () => {
+    return (
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10 }}>
+        <TouchableOpacity onPress={() => setPage(page - 1)} disabled={page === 1} style={homeStyles.nextPrevious}>
+          <Text style={homeStyles.textPage}>Previous</Text>
+        </TouchableOpacity>
+
+        <Text>{page}</Text>
+        <TouchableOpacity onPress={() => setPage(page + 1)} style={homeStyles.nextPrevious}>
+          <Text style={homeStyles.textPage}>Next</Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+
+
   return (
-    <View>
-      <Text>Home</Text>
+    <View style={homeStyles.container}>
+      <View>
+        <FlatList
+          data={dataProduct}
+          ListHeaderComponent={header}
+          ListFooterComponent={footer}
+          ListEmptyComponent={<Text>Tidak Ada Produk</Text>}
+          numColumns={2}
+          keyExtractor={(item, index) => item.id + index.toString()}
+          showsVerticalScrollIndicator={false}
+          columnWrapperStyle={{
+            marginBottom: 18,
+            justifyContent: 'space-between',
+          }}
+
+          renderItem={({ item }) => (
+
+            <Card
+              name={item?.name}
+              category={item?.Categories}
+              basePrice={item?.base_price}
+              imageUrl={item?.image_url}
+              style={{ marginHorizontal: 13 }}
+              onPress={() => navigation.navigate('Detail', { IdProduct: item.id })}
+            />
+          )}
+        />
+      </View>
     </View>
-  )
-}
+  );
+};
+
 
 export default Home
+
+const styles = StyleSheet.create({})
+
