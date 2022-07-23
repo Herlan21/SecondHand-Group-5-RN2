@@ -31,6 +31,7 @@ const Notifikasi = () => {
         <Text style={styles.akun}>Notifikasi</Text>
       </View>
 
+
       <ScrollView>
         {notification?.map((data, index) => (
           <TouchableOpacity
@@ -38,7 +39,6 @@ const Notifikasi = () => {
             key={index}>
             <View style={{ flexDirection: 'row', paddingTop: 24, justifyContent: 'space-around', borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }}>
               <View style={{ padding: 4, flexDirection: 'row' }}>
-              
                 <Image
                   style={{ width: 60, height: 60, borderRadius: 12 }}
                   source={{
@@ -46,9 +46,18 @@ const Notifikasi = () => {
                   }}
                 />
 
+
                 <View style={{ flexDirection: 'column', paddingLeft: 8 }}>
                   <Text style={{ marginLeft: 4 }}>{data.product_name}</Text>
                   <Text style={{ marginLeft: 4 }}>{FormatRupiah(data.base_price)}</Text>
+                  <Text style={{ marginLeft: 4 }}>Seller : {data.seller_name}</Text>
+                </View>
+              </View>
+
+
+                <View style={{ flexDirection: 'column', paddingLeft: 8 }}>
+                  <Text style={{ marginLeft: 4 }}>{data.product_name}</Text>
+                  <Text style={{ marginLeft: 4 }}>Rp. {data.base_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</Text>
                   <Text style={{ marginLeft: 4 }}>Seller : {data.seller_name}</Text>
                 </View>
               </View>
