@@ -1,13 +1,14 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Feather'
 import { purple, black, purple1, white } from '../../constant'
-import { useDispatch } from 'react-redux'
 import { Logout } from '../../redux/action/actionAuth'
-// import { useNavigation } from '@react-navigation/native';
+import { useSelector, useDispatch } from 'react-redux'
 
 const AkunMenu = ({ navigation }) => {
 
+
+  const profileUser = useSelector((state) => state.ProfileReducer.profileUser);
   const dispatch = useDispatch()
   // const navigation = useNavigation();
 
@@ -18,9 +19,21 @@ const AkunMenu = ({ navigation }) => {
 
     <View style={styles.container}>
 
-      <TouchableOpacity style={styles.Logowrapper}>
-        <Icon style={styles.logoCamera} name="camera" size={28} color={purple} />
-      </TouchableOpacity>
+      {profileUser.image_url == null ?
+        <TouchableOpacity
+          style={styles.Logowrapper}>
+          <Icon style={styles.logoCamera} name="camera" size={28} color={purple} />
+        </TouchableOpacity>
+        :
+        <View style={styles.Logowrapper}>
+          <Image
+            style={{ width: 120, height: 120, borderRadius: 12 }}
+            source={{
+              uri: `${profileUser.image_url}`,
+            }}
+          />
+        </View>
+      }
 
       <View style={{ marginHorizontal: 20, marginTop: 20 }}>
         <TouchableOpacity style={styles.akunSettingWrapper} onPress={() => navigation.navigate('ChangeProfile')} >

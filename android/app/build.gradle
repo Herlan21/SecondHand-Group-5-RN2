@@ -145,6 +145,9 @@ android {
         versionName "1.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 
+        vectorDrawables.useSupportLibrary = true //image crop
+
+
         if (isNewArchitectureEnabled()) {
             // We configure the NDK build only if you decide to opt-in for the New Architecture.
             externalNativeBuild {
