@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/Feather';
@@ -38,67 +38,60 @@ const Detail = ({ route }) => {
     }
 
     return (
-        <View style={{ flex: 1, backgroundColor: white }}>
+        <ScrollView>
+            <View style={{ flex: 1, backgroundColor: white }}>
 
-            
+
                 <Image
                     source={{ uri: dataDetail.image_url }}
                     style={styles.imageDetail}
                     resizeMode="contain"
                 />
 
-             
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.wrapperBackButton}>
-                        <Icon name="arrow-left" size={30} color="black" style={styles.backButton} />
-                    </TouchableOpacity>
-            
-           
 
-            <View style={styles.wrapperDetailName}>
-                <Text style={styles.detailName}>{dataDetail.name}</Text>
-
-                <Text>
-                    {dataDetail?.Categories?.map((item, index) => (
-                        <Text key={item.id}>
-                            {index > 0 ? ', ' : ''}
-                            {item.name}
-                        </Text>
-                    ))}
-                </Text>
-
-                <Text style={styles.detailName}>{FormatRupiah(dataDetail.base_price)}</Text>
-            </View>
-
-            <View style={styles.wrapperDetailName}>
-                <Text style={styles.detailName}>Deskripsi Produk</Text>
-
-                <Text>
-                    {dataDetail?.Categories?.map((item, index) => (
-                        <Text key={item.id}>
-                            {index > 0 ? ', ' : ''}
-                            {item.name}
-                        </Text>
-                    ))}
-                </Text>
-
-                <Text style={styles.detailName}>{FormatRupiah(dataDetail.base_price)}</Text>
-            </View>
-
-
-            <TextInput
-                style={styles.input}
-                onChangeText={setBid}
-                value={bid}
-                placeholder="Kirim harga tawarmu"
-                keyboardType="numeric"
-            />
-
-            <View style={[styles.wrapperButtonBid, {backgroundColor: allBid[0]?.status ? gray : purple,}]}>
-                <TouchableOpacity style={styles.ButtonBid} onPress={() => BidProduk()} disabled={allBid[0]?.status}>
-                    <Text style={styles.buttonBidText}> { allBid[0]?.status ? 'Menunggu respon penjual' : 'Bid Produk'} </Text>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.wrapperBackButton}>
+                    <Icon name="arrow-left" size={30} color="black" style={styles.backButton} />
                 </TouchableOpacity>
+
+
+
+                <View style={styles.wrapperDetailName}>
+                    <Text style={styles.detailName}>{dataDetail.name}</Text>
+
+                    <Text>
+                        {dataDetail?.Categories?.map((item, index) => (
+                            <Text key={item.id}>
+                                {index > 0 ? ', ' : ''}
+                                {item.name}
+                            </Text>
+                        ))}
+                    </Text>
+
+                    <Text style={styles.detailName}>{FormatRupiah(dataDetail.base_price)}</Text>
+                </View>
+
+                <View style={styles.wrapperDetailName}>
+                    <Text style={styles.detailName}>Deskripsi Produk</Text>
+                    <Text style={styles.desckripsiProduk}>{dataDetail.description}</Text>
+                </View>
+
+                <View style={styles.wrapperBidInput}>
+                    <TextInput
+                        style={styles.inputBid}
+                        onChangeText={setBid}
+                        value={bid}
+                        placeholder="Kirim harga tawarmu"
+                        keyboardType="numeric"
+                    />
+                </View>
+
+                <View style={[styles.wrapperButtonBid, { backgroundColor: allBid[0]?.status ? gray : purple, }]}>
+                    <TouchableOpacity style={styles.ButtonBid} onPress={() => BidProduk()} disabled={allBid[0]?.status}>
+                        <Text style={styles.buttonBidText}> {allBid[0]?.status ? 'Menunggu respon penjual' : 'Bid Produk'} </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -110,7 +103,7 @@ const styles = StyleSheet.create({
         height: 300,
     },
 
-    wrapperBackButton:{
+    wrapperBackButton: {
         backgroundColor: purple1,
         width: 30,
         marginHorizontal: 15,
@@ -123,7 +116,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 18,
         borderRadius: 10,
         backgroundColor: white,
-        elevation: 4
+        elevation: 4,
+        paddingBottom: 10,
     },
 
     detailName: {
@@ -147,5 +141,19 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         fontSize: 15,
     },
+
+    desckripsiProduk: {
+        fontSize: 15,
+    },
+
+    inputBid: {
+      fontSize: 16,
+    },
+    
+    wrapperBidInput: {
+       
+        alignItems: 'center',
+        borderColor: black
+    }
 
 })
