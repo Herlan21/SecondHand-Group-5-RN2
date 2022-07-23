@@ -1,14 +1,17 @@
-import { View, Text, Image, TextInput, Button, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, Button, TouchableOpacity } from 'react-native'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Login } from '../../redux/action/actionAuth'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import Input from './Input'
 
+import loginStyles from '../../styles/loginStyles'
+
 const LoginScreen = ({ navigation }) => {
+
     const dispatch = useDispatch()
-    
+
     const handleSubmit = (values) => {
         dispatch(Login(values.email, values.password))
         console.log(values.password)
@@ -36,28 +39,39 @@ const LoginScreen = ({ navigation }) => {
             onSubmit={handleSubmit}
         >
             {
-                ({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
-                    <View>
+                ({ handleChange, handleSubmit, values, errors, isValid }) => (
+
+                    <View style={loginStyles.container}>
+
                         <Input
+                            style={loginStyles.textInput}
                             placeholder={'Email'}
                             onChangeText={handleChange('email')}
                             error={errors.email}
                             value={values.email}
                         />
+
                         <Input
+                            style={loginStyles.textInput}
                             placeholder={'Password'}
                             onChangeText={handleChange('password')}
                             secureTextEntry={true}
                             error={errors.password}
                             value={values.password}
                         />
-                        <View style={{ padding: 8 }}>
+
+
+                        <View style={loginStyles.wrapperloginButton}>
                             <Button onPress={handleSubmit} title="Login" />
                         </View>
-                        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                            <Text style={{ color: 'blue' }}>Register</Text>
-                        </TouchableOpacity>
 
+                        <View style={loginStyles.wrapperRegisterButton}>
+                            <Text style={{ color: '#000' }}>Don't have an account? </Text>
+                            
+                            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+                                <Text style={{ color: '#1b30d1', fontWeight: 'bold' }}>Register here</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 )
             }

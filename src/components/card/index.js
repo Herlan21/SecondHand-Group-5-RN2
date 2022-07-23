@@ -4,25 +4,25 @@ import React from 'react'
 import { shadow, white } from '../../constant'
 import { FormatRupiah } from '../../constant/rupiah'
 
-const Card = ({ onPress, category, price, imageUrl, name, basePrice }) => {
+const Card = ({ onPress, category, price, imageUrl, name, basePrice, style }) => {
 
     return (
-        <TouchableOpacity onPress={onPress}>
+        <View style={style}>
+            <TouchableOpacity onPress={onPress} style={styles.wrapperCard}>
 
-            <View style={styles.container}>
-                <Text style={styles.card}>{name}</Text>
-                <Text> {category?.map((item) => (category.length > 1 ? `${item.name}, ` : item.name))} </Text>
-                <Text> {FormatRupiah(basePrice)} </Text>
-            </View>
-
-            <View>
                 <Image
-                    source={{uri: imageUrl}}
+                    source={{ uri: imageUrl }}
                     style={styles.image}
                 />
-            </View>
 
-        </TouchableOpacity>
+
+                <View style={styles.container}>
+                    <Text style={[styles.nameProduct]} ellipsizeMode="tail" numberOfLines={1}>{name}</Text>
+                    <Text style={styles.categoryProduct} ellipsizeMode="tail" numberOfLines={1}> {category?.map((item) => (category.length > 1 ? `${item.name}, ` : item.name))} </Text>
+                    <Text style={[styles.nameProduct]}> {FormatRupiah(basePrice)} </Text>
+                </View>
+            </TouchableOpacity>
+        </View>
     )
 }
 
@@ -30,18 +30,29 @@ export default Card
 
 const styles = StyleSheet.create({
 
-
-    card: {
-        width: 150,
+    wrapperCard: {
+        maxWidth: 150,
         height: 200,
-        backgroundColor: white,
-        marginVertical: 35,
-        marginLeft: 30,
-        ...shadow
+        padding: 12,
+        borderRadius: 8,
+        backgroundColor: '#ffffff',
+        elevation: 4
     },
-
-    image:{
-        width: 105,
+    image: {
+        width: 125,
         height: 100,
-    }
+        justifyContent: 'center',
+        borderRadius: 4
+    },
+    nameProduct: {
+        color: 'black',
+        fontWeight: '400',
+        fontSize: 14,
+    },
+    categoryProduct: {
+        fontSize: 10,
+        lineHeight: 14,
+        fontWeight: '400',
+        marginVertical: 2
+    },
 })
