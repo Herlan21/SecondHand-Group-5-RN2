@@ -5,9 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useIsFocused } from '@react-navigation/native';
 import { notificationData } from '../../redux/action/getNotification';
 
-import FormatRupiah from '../../constant/rupiah';
-
-
 const Notifikasi = () => {
 
   const dispatch = useDispatch();
@@ -33,10 +30,11 @@ const Notifikasi = () => {
 
 
       <ScrollView>
-        {notification?.map((data, index) => (
+        {notification.map((data, index) => (
+          
           <TouchableOpacity
-            // onPress={addData}
-            key={index}>
+            key={index?.id}>
+
             <View style={{ flexDirection: 'row', paddingTop: 24, justifyContent: 'space-around', borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }}>
               <View style={{ padding: 4, flexDirection: 'row' }}>
                 <Image
@@ -46,14 +44,12 @@ const Notifikasi = () => {
                   }}
                 />
 
-
                 <View style={{ flexDirection: 'column', paddingLeft: 8 }}>
                   <Text style={{ marginLeft: 4 }}>{data.product_name}</Text>
-                  <Text style={{ marginLeft: 4 }}>{FormatRupiah(data.base_price)}</Text>
+                  <Text style={{ marginLeft: 4 }}>Rp. {data.base_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</Text>
                   <Text style={{ marginLeft: 4 }}>Seller : {data.seller_name}</Text>
                 </View>
               </View>
-
 
                 <View style={{ flexDirection: 'column', paddingLeft: 8 }}>
                   <Text style={{ marginLeft: 4 }}>{data.product_name}</Text>
