@@ -3,11 +3,10 @@ on:
   push:
     branches:
       - development
-      
   pull_request:
     types: [opened, synchronize, reopened]
 
-  env:
+ env:
   APP_CENTER_TOKEN: ${{ secrets.APP_CENTER_TOKEN }}
   APP_NAME: ${{ 'herlan/SecondHand'  }}
   TESTING_GROUP: ${{  'Collaborators'  }}
@@ -21,8 +20,21 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-       - name: set up JDK 1.8
+build:
+    name: Build Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: set up JDK 1.8
         uses: actions/setup-java@v1
         with:
           java-version: 14
@@ -33,18 +45,12 @@ jobs:
       - name: Build android
         run: cd android && ./gradlew assembleRelease
 
-       - name: Upload to App Center
-         uses: wzieba/AppCenter-Github-Action@v1
-         with:
+      - name: Upload to App Center
+        uses: wzieba/AppCenter-Github-Action@v1
+        with:
           appName: ${{ env.APP_NAME }}
           token: ${{ env.APP_CENTER_TOKEN }}
           group: ${{ env.TESTING_GROUP }}
           file: ${{ env.UPLOAD_FILE }}
           notifyTesters: true
           debug: false
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
