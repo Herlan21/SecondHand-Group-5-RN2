@@ -28,6 +28,7 @@ const Notifikasi = () => {
         <Text style={styles.akun}>Notifikasi</Text>
       </View>
 
+
       <ScrollView>
         {notification.map((data, index) => (
           
@@ -42,12 +43,21 @@ const Notifikasi = () => {
                     uri: `${data.image_url}`,
                   }}
                 />
+
                 <View style={{ flexDirection: 'column', paddingLeft: 8 }}>
                   <Text style={{ marginLeft: 4 }}>{data.product_name}</Text>
                   <Text style={{ marginLeft: 4 }}>Rp. {data.base_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</Text>
                   <Text style={{ marginLeft: 4 }}>Seller : {data.seller_name}</Text>
                 </View>
               </View>
+
+                <View style={{ flexDirection: 'column', paddingLeft: 8 }}>
+                  <Text style={{ marginLeft: 4 }}>{data.product_name}</Text>
+                  <Text style={{ marginLeft: 4 }}>Rp. {data.base_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</Text>
+                  <Text style={{ marginLeft: 4 }}>Seller : {data.seller_name}</Text>
+                </View>
+              </View>
+
               <View style={{ padding: 4 }}>
                 <Text>{data.createdAt}</Text>
               </View>
