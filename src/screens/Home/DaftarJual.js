@@ -70,7 +70,7 @@ const DaftarJual = ({ navigation }) => {
         </View>
       </View>
       <View>
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <View style={{
             display: 'flex', flexDirection: 'row', paddingTop: 12, justifyContent: 'space-around'
           }}>

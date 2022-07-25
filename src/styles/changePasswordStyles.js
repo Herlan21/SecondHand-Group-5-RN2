@@ -1,14 +1,21 @@
 import { StyleSheet } from "react-native"
-import { red } from '../constant/index';
+import { red, white, black } from '../constant/index';
 
-const loginStyles = StyleSheet.create({
+const changePasswordStyles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: white,
     },
 
-    textInput: {
+    lengkapiProfileText: {
+        textAlign: "center",
+        top: 20,
+        fontWeight: "bold",
+        color: black,
+    },
+
+    changePasswordInput: {
         alignSelf: 'center',
         borderColor: '#bbb',
         borderWidth: 1,
@@ -18,9 +25,9 @@ const loginStyles = StyleSheet.create({
         top: 200,
     },
 
-    Login: {
+    yup: {
         color: red,
-        top: 190,
+        top: 185,
         left: 20,
     },
 
@@ -40,4 +47,4 @@ const loginStyles = StyleSheet.create({
 
 })
 
-export default loginStyles
+export default changePasswordStyles

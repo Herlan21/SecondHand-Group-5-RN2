@@ -24,16 +24,15 @@ const Notifikasi = () => {
 
   return (
     <View style={{ flex: 1 }}>
+
       <View>
         <Text style={styles.akun}>Notifikasi</Text>
       </View>
 
-
       <ScrollView>
         {notification.map((data, index) => (
-          
-          <TouchableOpacity
-            key={index?.id}>
+
+          <TouchableOpacity key={index?.id}>
 
             <View style={{ flexDirection: 'row', paddingTop: 24, justifyContent: 'space-around', borderBottomWidth: 1, borderBottomColor: '#E5E5E5' }}>
               <View style={{ padding: 4, flexDirection: 'row' }}>
@@ -51,16 +50,10 @@ const Notifikasi = () => {
                 </View>
               </View>
 
-                <View style={{ flexDirection: 'column', paddingLeft: 8 }}>
-                  <Text style={{ marginLeft: 4 }}>{data.product_name}</Text>
-                  <Text style={{ marginLeft: 4 }}>Rp. {data.base_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</Text>
-                  <Text style={{ marginLeft: 4 }}>Seller : {data.seller_name}</Text>
-                </View>
-              </View>
-
               <View style={{ padding: 4 }}>
                 <Text>{data.createdAt}</Text>
               </View>
+
             </View>
           </TouchableOpacity>
         ))}
