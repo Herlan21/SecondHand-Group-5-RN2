@@ -1,12 +1,13 @@
 import { StyleSheet, View, Text, Button, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Feather'
-import { purple, black, purple1, white } from '../../constant'
 import { useSelector, useDispatch } from 'react-redux';
-// import { RegisterAction } from '../../redux/action/actionAuth'
-import { changePassword } from '../../redux/action/changePassword'
 import { Formik } from 'formik'
 import * as yup from 'yup'
+
+import changePasswordStyles from '../../styles/changePasswordStyles';
+import { purple, black, purple1, white } from '../../constant'
+import { changePassword } from '../../redux/action/changePassword'
 import Input from '../Auth/Input'
 
 const Setting = ({ navigation }) => {
@@ -17,7 +18,7 @@ const Setting = ({ navigation }) => {
     const handleSubmit = (values) => {
         console.log(values)
         dispatch(changePassword(auth_Token, values.current_password, values.new_password, values.confirm_password, navigation))
-        // navigation.navigate('Login')
+
     };
 
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -44,10 +45,10 @@ const Setting = ({ navigation }) => {
     })
 
     return (
-        <View style={{ flex: 1, backgroundColor: white }}>
+        <View style={changePasswordStyles.container}>
 
             <View>
-                <Text style={styles.lengkapiProfile}>Pengaturan Ganti Kata Sandi</Text>
+                <Text style={changePasswordStyles.lengkapiProfileText}>Pengaturan Ganti Kata Sandi</Text>
 
                 <View>
                     <TouchableOpacity onPress={() => navigation.navigate('MainApp')}>
@@ -61,30 +62,42 @@ const Setting = ({ navigation }) => {
                         onSubmit={handleSubmit}
                     >
                         {
-                            ({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
+                            ({ handleChange, handleSubmit, values, errors }) => (
                                 <View>
                                     <Input
+                                        style={changePasswordStyles.changePasswordInput}
                                         placeholder={'Current Password'}
                                         onChangeText={handleChange('current_password')}
                                         secureTextEntry={true}
-                                        error={errors.current_password}
                                         value={values.current_password}
                                     />
+                                    {errors.current_password &&
+                                        <Text style={changePasswordStyles.yup}>{errors.current_password}</Text>
+                                    }
+
                                     <Input
+                                        style={changePasswordStyles.changePasswordInput}
                                         placeholder={'New Password'}
                                         onChangeText={handleChange('new_password')}
                                         secureTextEntry={true}
-                                        error={errors.new_password}
                                         value={values.new_password}
                                     />
+                                    {errors.new_password &&
+                                        <Text style={changePasswordStyles.yup}>{errors.new_password}</Text>
+                                    }
+
                                     <Input
+                                        style={changePasswordStyles.changePasswordInput}
                                         placeholder={'Confirm Password'}
                                         onChangeText={handleChange('confirm_password')}
                                         secureTextEntry={true}
-                                        error={errors.confirm_password}
                                         value={values.confirm_password}
                                     />
-                                    <View style={{ padding: 8 }}>
+                                    {errors.confirm_password &&
+                                        <Text style={changePasswordStyles.yup}>{errors.confirm_password}</Text>
+                                    }
+
+                                    <View style={ changePasswordStyles.wrapperloginButton}>
                                         <Button onPress={handleSubmit} title="Change Password" />
                                     </View>
                                 </View>

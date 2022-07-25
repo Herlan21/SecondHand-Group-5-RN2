@@ -1,4 +1,4 @@
-import { View, Text, Button, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Login } from '../../redux/action/actionAuth'
@@ -7,6 +7,7 @@ import * as yup from 'yup'
 import Input from './Input'
 
 import loginStyles from '../../styles/loginStyles'
+
 
 const LoginScreen = ({ navigation }) => {
 
@@ -39,7 +40,7 @@ const LoginScreen = ({ navigation }) => {
             onSubmit={handleSubmit}
         >
             {
-                ({ handleChange, handleSubmit, values, errors, isValid }) => (
+                ({ handleChange, handleSubmit, values, errors }) => (
 
                     <View style={loginStyles.container}>
 
@@ -47,18 +48,22 @@ const LoginScreen = ({ navigation }) => {
                             style={loginStyles.textInput}
                             placeholder={'Email'}
                             onChangeText={handleChange('email')}
-                            error={errors.email}
                             value={values.email}
                         />
+                        {errors.email &&
+                            <Text style={loginStyles.Login}>{errors.email}</Text>
+                        }
 
                         <Input
                             style={loginStyles.textInput}
                             placeholder={'Password'}
                             onChangeText={handleChange('password')}
                             secureTextEntry={true}
-                            error={errors.password}
                             value={values.password}
                         />
+                        {errors.password &&
+                            <Text style={loginStyles.Login}>{errors.password}</Text>
+                        }
 
 
                         <View style={loginStyles.wrapperloginButton}>
@@ -67,7 +72,7 @@ const LoginScreen = ({ navigation }) => {
 
                         <View style={loginStyles.wrapperRegisterButton}>
                             <Text style={{ color: '#000' }}>Don't have an account? </Text>
-                            
+
                             <TouchableOpacity onPress={() => navigation.navigate('Register')}>
                                 <Text style={{ color: '#1b30d1', fontWeight: 'bold' }}>Register here</Text>
                             </TouchableOpacity>
@@ -80,3 +85,6 @@ const LoginScreen = ({ navigation }) => {
 }
 
 export default LoginScreen
+
+   
+
